@@ -1,0 +1,57 @@
+[{
+  "id": 1,
+  "name": "OOP",
+  "price": 80,
+  "category": "basic",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 2,
+  "name": "Java",
+  "price": 85,
+  "category": "code",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 3,
+  "name": "C++",
+  "price": 90,
+  "category": "basic",
+  "active": false,
+  "image": "assets/images/book.png"
+}, {
+  "id": 4,
+  "name": "Flutter",
+  "price": 70,
+  "category": "basic",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 5,
+  "name": "DSA",
+  "price": 95,
+  "category": "basic",
+  "active": false,
+  "image": "assets/images/book.png"
+}, {
+  "id": 6,
+  "name": "OOP",
+  "price": 80,
+  "category": "basic",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 7,
+  "name": "Java",
+  "price": 85,
+  "category": "code",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 8,
+  "name": "C++",
+  "price": 90,
+  "category": "basic",
+  "active": false,
+  "image": "assets/images/book.png"
+}]

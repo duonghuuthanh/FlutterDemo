@@ -1,0 +1,22 @@
+[{
+  "id": 11,
+  "name": "Java Page 2",
+  "price": 80,
+  "category": "basic",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 12,
+  "name": "OOP PAGE 2",
+  "price": 85,
+  "category": "code",
+  "active": true,
+  "image": "assets/images/book.png"
+}, {
+  "id": 13,
+  "name": "C++ Page 2",
+  "price": 90,
+  "category": "basic",
+  "active": false,
+  "image": "assets/images/book.png"
+}]
