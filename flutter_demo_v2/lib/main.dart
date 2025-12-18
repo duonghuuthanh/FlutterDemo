@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_v2/screens/ApiDemoScreen.dart';
 import 'package:flutter_demo_v2/screens/Course.dart';
 import 'package:flutter_demo_v2/screens/DemoScreen.dart';
 import 'package:flutter_demo_v2/screens/DemoScreen2.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.lightBlue,
         ),
-        body: DemoScreen2(),
+        body: ApiDemoScreen(),
         bottomNavigationBar: Container(
           color: Colors.teal,
           child: Padding(
