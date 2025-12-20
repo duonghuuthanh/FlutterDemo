@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo_v1/screens/ApiDemoScreen.dart';
 import 'package:flutter_demo_v1/screens/CourseScreen.dart';
 import 'package:flutter_demo_v1/screens/DemoScreen.dart';
+import 'package:flutter_demo_v1/screens/TaskManagementScreen.dart';
 import 'package:flutter_demo_v1/screens/TestScreen.dart';
 import 'package:flutter_demo_v1/widgets/Counter.dart';
 import 'package:flutter_demo_v1/widgets/GridViewTest.dart';
@@ -20,11 +21,11 @@ class MyApp extends StatelessWidget {
       title: "My First App",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("My Demo App"),
+          title: Text("Task Management App"),
           backgroundColor: Colors.lightBlue,
           centerTitle: true,
         ),
-        body: ApiDemoScreen(),
+        body: TaskManagementScreen(),
         bottomNavigationBar: Container(
           color: Colors.teal,
           child: Padding(
