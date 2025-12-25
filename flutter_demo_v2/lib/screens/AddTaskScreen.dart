@@ -60,6 +60,7 @@ class _AddTaskState extends State<AddTaskScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Add task successful!"))
         );
+        Navigator.pop(context, task);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("Add task failed!"))
@@ -76,6 +77,9 @@ class _AddTaskState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Task"),
+      ),
       body: Padding(
         padding: EdgeInsetsGeometry.all(10),
         child:  Column(
@@ -152,14 +156,14 @@ class _AddTaskState extends State<AddTaskScreen> {
                     const CircularProgressIndicator()
                         :Text("Add Task")
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ApiDemoScreen()));
-                    },
-                    child: _submitting?
-                    const CircularProgressIndicator()
-                        :Text("Go to Task Categories")
-                )
+                // ElevatedButton(
+                //     onPressed: () {
+                //       Navigator.push(context, MaterialPageRoute(builder: (context) => ApiDemoScreen()));
+                //     },
+                //     child: _submitting?
+                //     const CircularProgressIndicator()
+                //         :Text("Go to Task Categories")
+                // )
               ],
             )
 

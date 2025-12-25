@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_v2/models/Category.dart';
 import 'package:flutter_demo_v2/models/Task.dart';
+import 'package:flutter_demo_v2/screens/AddTaskScreen.dart';
 import 'package:flutter_demo_v2/screens/ApiDemoScreen.dart';
 import 'package:flutter_demo_v2/screens/Course.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +22,7 @@ class TaskManagementScreen extends StatefulWidget {
 class _TaskState extends State<TaskManagementScreen> {
 
   String? cateId;
+  List<Task> tasks = [];
 
   _TaskState({this.cateId});
 
@@ -85,6 +87,15 @@ class _TaskState extends State<TaskManagementScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Task List"),),
+      floatingActionButton: ElevatedButton(onPressed: () async {
+          final res = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return AddTaskScreen();
+          }));
+
+          setState(() {
+            tasks.add(res);
+          });
+      }, child: Icon(Icons.add, size: 30)),
       body: Padding(
         padding: EdgeInsetsGeometry.all(10),
         child: Column(
@@ -100,7 +111,7 @@ class _TaskState extends State<TaskManagementScreen> {
                     );
                   }
 
-                  final tasks = snapshot.data!;
+                  this.tasks = snapshot.data!;
 
                   return ListView.builder(
                     itemCount: tasks.length,
