@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_v1/models/Category.dart';
+import 'package:flutter_demo_v1/screens/TaskManagementScreen.dart';
 import 'package:http/http.dart' as http;
 
 class ApiDemoScreen extends StatefulWidget {
@@ -9,14 +10,13 @@ class ApiDemoScreen extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _ApiState();
   }
-
 }
 
 class _ApiState extends State<ApiDemoScreen> {
   bool isGrid = false;
 
   Future<List<Category>> loadCategories() async {
-    Uri uri = Uri.parse("https://6943460869b12460f3141dc5.mockapi.io/categories");
+    Uri uri = Uri.parse("https://6943683669b12460f3147816.mockapi.io/categories");
     final res = await http.get(uri);
 
     if (res.statusCode == 200) {
@@ -77,17 +77,26 @@ class _ApiState extends State<ApiDemoScreen> {
                   );
                 },
             );
-          } else
-            return ListView.builder(
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  final c = categories[index];
-                  return ListTile(
-                    leading: CircleAvatar(child: Text(c.id),),
-                    title: Text(c.name),
-                  );
-                }
-            );
+          }
+
+          return ListView.builder(
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final c = categories[index];
+                return ListTile(
+                  leading: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                                     MaterialPageRoute(builder: (context) {
+                          return TaskManagementScreen(cateId: c.id);
+                      }));
+                    },
+                    child: CircleAvatar(child: Text(c.id)),
+                  ),
+                  title: Text(c.name),
+                );
+              }
+          );
         },
       ),
     );

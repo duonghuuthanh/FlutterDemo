@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_v2/models/Category.dart';
+import 'package:flutter_demo_v2/screens/TaskManagementScreen.dart';
 import 'package:http/http.dart' as http;
 
 class ApiDemoScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class ApiDemoScreen extends StatefulWidget {
 class _ApiState extends State<ApiDemoScreen> {
   bool isGrid = false;
   Future<List<Category>>? t;
+  List<Category> categories = [];
 
   Future<List<Category>> loadCategories() async {
     Uri uri = Uri.parse("https://6943683669b12460f3147816.mockapi.io/categories");
@@ -38,8 +40,13 @@ class _ApiState extends State<ApiDemoScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context, categories);
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
           title: Text("API DEMO",),
           actions: [
             IconButton(onPressed: () {
@@ -48,8 +55,8 @@ class _ApiState extends State<ApiDemoScreen> {
               });
             }, icon: Icon(isGrid==true?Icons.grid_view:Icons.list))
           ],
-      ),
-      body: FutureBuilder(
+        ),
+        body: FutureBuilder(
           future: t,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -63,22 +70,22 @@ class _ApiState extends State<ApiDemoScreen> {
                 child: Text("Error ${snapshot.error}"),
               );
             }
-            final categories = snapshot.data!;
+            categories = snapshot.data!;
             if (isGrid)
               return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2
-                  ),
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) {
-                    Category c = categories[index];
-                    return Padding(padding: EdgeInsetsGeometry.all(8),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2
+                ),
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  Category c = categories[index];
+                  return Padding(padding: EdgeInsetsGeometry.all(8),
                     child: Card(
                       child: Center(
                         child: Text(c.name, style: TextStyle(fontSize: 30, color: Colors.blue),),
                       ),
                     ),);
-                  },
+                },
               );
 
             return ListView.builder(
@@ -86,13 +93,22 @@ class _ApiState extends State<ApiDemoScreen> {
               itemBuilder: (context, index) {
                 Category c = categories[index];
                 return ListTile(
-                  leading: CircleAvatar(child: Text(c.id),),
+                  leading: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return TaskManagementScreen(cateId: c.id);
+                      }));
+                    },
+                    child: CircleAvatar(child: Text(c.id)),
+                  ),
                   title: Text(c.name),
                 );
               },
             );
           },
+        ),
       ),
     );
+
   }
 }

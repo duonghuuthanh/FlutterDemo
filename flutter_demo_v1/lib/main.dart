@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_v1/screens/AddTaskScreen.dart';
 import 'package:flutter_demo_v1/screens/ApiDemoScreen.dart';
 import 'package:flutter_demo_v1/screens/CourseScreen.dart';
 import 'package:flutter_demo_v1/screens/DemoScreen.dart';
 import 'package:flutter_demo_v1/screens/TaskManagementScreen.dart';
 import 'package:flutter_demo_v1/screens/TestScreen.dart';
+import 'package:flutter_demo_v1/taskapp/TaskCategoryScreen.dart';
+import 'package:flutter_demo_v1/taskapp/TaskMainScreen.dart';
+import 'package:flutter_demo_v1/taskapp/TaskScreen.dart';
 import 'package:flutter_demo_v1/widgets/Counter.dart';
 import 'package:flutter_demo_v1/widgets/GridViewTest.dart';
 import 'package:flutter_demo_v1/widgets/ListViewTest.dart';
@@ -19,28 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "My First App",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Task Management App"),
-          backgroundColor: Colors.lightBlue,
-          centerTitle: true,
-        ),
-        body: TaskManagementScreen(),
-        bottomNavigationBar: Container(
-          color: Colors.teal,
-          child: Padding(
-            padding: EdgeInsetsGeometry.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Icon(Icons.home, size: 30,),
-                Icon(Icons.person, size: 30,),
-                Icon(Icons.login, size: 30,),
-              ],
-            ),
-          ),
-        ),
-      ),
+      home: MainTaskScreen(),
     );
   }
 }
